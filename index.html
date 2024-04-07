@@ -16,37 +16,7 @@
       align-items: center;
     }
 
-	  Capisco il problema. Se vuoi far sì che il testo dell'intestazione <h1> si adatti in modo responsivo alla grandezza dello schermo, puoi utilizzare le unità di misura relative come vw (viewport width) o em. Questo farà sì che il testo si ridimensioni proporzionalmente alla larghezza del viewport.
-
-Ecco un esempio di come potresti modificare il CSS per l'intestazione <h1> e i pulsanti:
-
-html
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Pulsanti stondati</title>
-  <style>
-    body {
-      margin: 0;
-      padding: 0;
-      font-family: Arial, sans-serif;
-      background-color: #6f42c1; /* Sfondo viola */
-      color: #fff; /* Testo bianco */
-      min-height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      flex-direction: column; /* Allinea verticalmente al centro */
-    }
-
-    .container {
-      text-align: center;
-      width: 80%; /* Larghezza del contenitore */
-      max-width: 400px; /* Larghezza massima del contenitore */
-    }
-
+	
     h1 {
       font-size: 5vw; /* Dimensione del testo in base alla larghezza del viewport */
       margin-bottom: 20px;
