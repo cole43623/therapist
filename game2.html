@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Pulsanti stondati</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+      background-color: #6f42c1; /* Sfondo viola */
+      color: #fff; /* Testo bianco */
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .container {
+      text-align: center;
+    }
+
+    .button-container {
+      display: flex;
+      justify-content: center;
+      margin-top: 20px;
+	  flex-direction: column;
+    }
+
+    .rounded-button {
+      padding: 10px 20px;
+      margin-bottom: 10px;
+      border: none;
+      border-radius: 20px;
+      background-color: #fff; /* Sfondo bianco */
+      color: #6f42c1; /* Testo viola */
+      font-size: 16px;
+      cursor: pointer;
+      transition: background-color 0.3s, color 0.3s;
+    }
+
+    .rounded-button:hover {
+      background-color: #6f42c1; /* Sfondo viola al passaggio del mouse */
+      color: #fff; /* Testo bianco al passaggio del mouse */
+    }
+	
+	
+    .overlay-box {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background-color: rgba(180, 180, 180, 1);
+      padding: 100px;
+      border-radius: 10px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+      z-index: 1000;
+      display: none; /* Per iniziare nascosto */
+    }
+
+    .overlay-box h2 {
+      margin-top: 0;
+    }
+
+    .overlay-box button1 {
+      margin: 5px;
+      padding: 8px 16px;
+      font-size: 16px;
+      border: none;
+      background-color: #00b300;
+      color: #fff;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .overlay-box button2 {
+      margin: 5px;
+      padding: 8px 16px;
+      font-size: 16px;
+      border: none;
+      background-color: #ff0000;
+      color: #fff;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .overlay-box button1:hover {
+      background-color: #007a00;
+    }
+    .overlay-box button2:hover {
+      background-color: #bf0000;
+    }
+
+	.overlay-box button3 {
+	  position: absolute;
+	  top: 5px;
+	  right: 5px;
+	  background-color: #6f42c1; /* Colore di sfondo del bottone */
+	  color: #ffffff; /* Colore del testo del bottone */
+	  padding: 5px 10px;
+	  border: none;
+	  border-radius: 5px;
+	  cursor: pointer;
+	}
+
+	.overlay-box button3:hover {
+	  background-color: #4a2179; /* Colore di sfondo del bottone al passaggio del cursore */
+	}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1><span id="case"></span></h1>
+    <div class="button-container">
+      <button class="rounded-button" id="nasriv" onclick="azione1()">Nascondi</button>
+      <button class="rounded-button" onclick="azione2()">Indovina</button>
+    </div>
+  </div>
+
+  <div class="overlay-box" id="overlayBox">
+    <h2>Hai indovinato?</h2>
+    <button1 onclick="giusto()">Sì</button1>
+    <button2 onclick="sbagliato()">NO</button2>
+    <button3 onclick="closeOverlay()">Indietro</button3>
+  </div>
+  
+  <script>
+	var output = document.getElementById("case");
+    const casi = ["Dovete rispondere con la testa inclinata di lato", "Dovete toccarvi almeno una volta i capelli (o la testa in assenza) durante la risposta","Dovete iniziare le risposte con la lettera s", "Dovete rispondere con altre domande", "Dovete rispondere come risponderebbe la persone che sta facendo il terapista", "Dovete rispondere con una parola sola", "Dovete includere nella risposta un oggetto intorno a voi","Dovete rispondere senza utilizzare la lettera A","Dovete rispondere mentendo", "Dovete rispondere con un numero crescente di parole, la prima risposta inizia con una (1)", "Dovete includere un numero nella vostra risposta", "Dovete rispondere come foste una donna", "Dovete rispondere come foste un uomo", "Dovete rispondere come foste un anziano/a", "Dovete rispondere con una bugia", "Dovete rispondere solo con parole in italiano (non sono accettati inglesismi, francescismi, latinismi e nemmeno nomi propri stranieri)","Dovete iniziare la risposta con le lettere dell'alfabeto in ordine crescente, la prima risposta inizia con la A","Le persone accanto alla persona che deve rispondere si devono grattare un braccio durante la risposta", "Dovete rispondere come foste un abitante del '300 che non conosce tutto quello accaduto dopo","Dovete rispondere utilizzando parole di massimo 5 lettere", "Dovete rispondere senza guaradre il terapista negli occhi", "Dovete iniziare le risposte con mhhh...", "Dovete rispondere alle domande come foste personaggi di un libro/film specifico (scegliete in anticipo quale)","Dovete rispondere come se foste un gatto (in grado di parlare ovviamente)", "Dovete rispondere come se foste una specifica persona famosa (scegliete in anticipo chi)", "Dovete rispondere come se foste in aereo", "Dovete rispondere a mani conserte", "Dovete rispondere senza sbattere le palpebre"];
+	const cor = casi[Math.floor(Math.random() * 28)];
+	output.innerHTML = cor;
+
+	var k=0;
+    function azione1() {
+		if (k==0)
+		{
+			output.innerHTML = "Dovete $!**£%&/(**$...";
+			document.getElementById("nasriv").innerHTML = "Rivela";
+			k=1;
+		}
+		else
+		{
+			output.innerHTML = cor;
+			document.getElementById("nasriv").innerHTML = "Nascondi";
+			k=0;
+		}
+    }
+
+    function azione2() {
+		var overlay = document.getElementById("overlayBox");
+		overlay.style.display = "block";
+    }
+
+    function closeOverlay() {
+      var overlay = document.getElementById("overlayBox");
+      overlay.style.display = "none";
+    }
+	
+    function giusto() {
+		const retrievedArrayAsString = sessionStorage.getItem("class");
+		var nome = JSON.parse(retrievedArrayAsString);
+		nome[nome[nome.length - 1]%((nome.length-1)/2)+(nome.length-1)/2] += 4;
+		nome[nome.length - 1] += 1;
+		var arrayAsString = JSON.stringify(nome);
+		sessionStorage.setItem("class", arrayAsString);
+		console.log(nome);
+        window.location.href = "rank.html";
+    }
+
+    function sbagliato() {
+		const retrievedArrayAsString = sessionStorage.getItem("class");
+		var nome = JSON.parse(retrievedArrayAsString);
+		for (var i = 0; i < (nome.length-1)/2; i++) {if (i != nome[nome.length - 1]%((nome.length-1)/2)) nome[i+(nome.length-1)/2]+=1;}
+		nome[nome.length - 1] += 1;
+		var arrayAsString = JSON.stringify(nome);
+		sessionStorage.setItem("class", arrayAsString);
+		console.log(nome);
+        window.location.href = "rank.html";
+	}
+  </script>
+</body>
+</html>

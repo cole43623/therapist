@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Pulsanti stondati</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+      background-color: #6f42c1; /* Sfondo viola */
+      color: #fff; /* Testo bianco */
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .container {
+      text-align: center;
+    }
+
+    .button-container {
+      display: flex;
+      justify-content: center;
+      margin-top: 20px;
+	  flex-direction: column;
+    }
+
+    .rounded-button {
+      padding: 10px 20px;
+      margin-bottom: 10px;
+      border: none;
+      border-radius: 20px;
+      background-color: #fff; /* Sfondo bianco */
+      color: #6f42c1; /* Testo viola */
+      font-size: 16px;
+      cursor: pointer;
+      transition: background-color 0.3s, color 0.3s;
+    }
+
+    .rounded-button:hover {
+      background-color: #6f42c1; /* Sfondo viola al passaggio del mouse */
+      color: #fff; /* Testo bianco al passaggio del mouse */
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1><span id="nome"></span> sei il terapista. Prima di continuare chiudi gli occhi e passa il telefono agli altri.</h1>
+    <div class="button-container">
+      <button class="rounded-button" onclick="azione1()">Rivela</button>
+    </div>
+  </div>
+
+  <script>
+ 
+	const retrievedArrayAsString = sessionStorage.getItem("class");
+	var nome = JSON.parse(retrievedArrayAsString);
+	var output = document.getElementById("nome");
+	output.innerHTML = nome[nome[nome.length - 1]%((nome.length-1)/2)];
+
+    function azione1() {
+        window.location.href = "game2.html";
+    }
+
+  </script>
+</body>
+</html>

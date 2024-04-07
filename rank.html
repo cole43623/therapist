@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Pulsanti stondati</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+      background-color: #6f42c1; /* Sfondo viola */
+      color: #fff; /* Testo bianco */
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .container {
+      text-align: center;
+    }
+
+    .button-container {
+      display: flex;
+      justify-content: center;
+      margin-top: 20px;
+      flex-direction: column;
+    }
+
+    .rounded-button {
+      padding: 10px 20px;
+      margin-bottom: 10px;
+      border: none;
+      border-radius: 20px;
+      background-color: #fff; /* Sfondo bianco */
+      color: #6f42c1; /* Testo viola */
+      font-size: 16px;
+      cursor: pointer;
+      transition: background-color 0.3s, color 0.3s;
+    }
+
+    .rounded-button:hover {
+      background-color: #6f42c1; /* Sfondo viola al passaggio del mouse */
+      color: #fff; /* Testo bianco al passaggio del mouse */
+    }
+
+    .text-input {
+      padding: 10px;
+      margin: 5px;
+      border-radius: 20px;
+      border: 1px solid #6f42c1; /* Bordo viola */
+      width: 200px;
+    }
+	.first-word {
+		font-size: 1.5em; /* Imposta la dimensione del testo più grande */
+		font-weight: bold; /* Imposta il testo in grassetto, se desiderato */
+		/* Altri stili a tua scelta */
+	}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Classifica</h1>
+    <div id="textInputsContainer" class="button-container">
+      <!-- Nomi vengono aggiunte qui -->
+    </div>
+    <div class="button-container">
+	<h2>Round <span id="round"></span></h2>
+      <button class="rounded-button" onclick="azione1()">Avvia</button>
+    </div>
+  </div>
+
+  <script>
+	const retrievedArrayAsString = sessionStorage.getItem("class");
+	var nome = JSON.parse(retrievedArrayAsString);
+	var output = document.getElementById("round");
+	output.innerHTML = nome[nome.length - 1]+1;
+	function indiciDecrescenti(array) {
+		array = nome.slice((nome.length-1)/2, nome.length-1);
+	  const indici = Array.from(Array(array.length).keys());
+	  indici.sort((a, b) => array[b] - array[a]);
+	  return indici;
+	}
+	const pos = indiciDecrescenti(nome);
+	console.log(pos);
+	var container = document.getElementById("textInputsContainer");
+    for (var i = 0; i < (nome.length-1)/2; i++) {
+        // Creare un nuovo elemento di paragrafo <p>
+        var newParagraph = document.createElement("p");
+        // Aggiungere il testo al paragrafo con il numero e gli elementi degli array
+        newParagraph.innerHTML  = " <span class='first-word'>" + (i + 1) + "° " + nome[pos[i]] + "</span> ............. " + nome[pos[i]+(nome.length-1)/2] + " punti";
+        // Aggiungere il nuovo paragrafo al div
+        container.appendChild(newParagraph);}
+
+    function azione1() {
+        window.location.href = "game1.html";
+    }
+
+	
+
+
+  </script>
+</body>
+</html>
